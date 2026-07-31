@@ -6,16 +6,31 @@
     <title>WhereHindustanEats | Healthy & Popular Restaurants India</title>
     <!-- Tailwind CSS Engine -->
     <script src="https://tailwindcss.com"></script>
+    <script>
+        // Configures Tailwind to support class-based dark mode switching
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cloudflare.com">
     <!-- Custom Style Sheet Link -->
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-gray-50 font-sans text-gray-800">
+<body class="bg-gray-50 text-gray-800 transition-colors duration-300 dark:bg-gray-900 dark:text-gray-100 font-sans">
 
     <!-- HERO SECTION -->
-    <header class="bg-emerald-800 text-white shadow-md relative overflow-hidden">
+    <header class="bg-emerald-800 dark:bg-emerald-950 text-white shadow-md relative overflow-hidden transition-colors duration-300">
         <div class="h-2 bg-amber-500 w-full"></div>
+        
+        <!-- Theme Toggle -->
+        <div class="absolute top-4 right-4 z-20">
+            <button id="themeToggle" class="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-xl text-sm font-bold flex items-center gap-2 border border-white/20 transition-all">
+                <i id="themeIcon" class="fa-solid fa-moon"></i>
+                <span id="themeText">Dark Mode</span>
+            </button>
+        </div>
+
         <div class="container mx-auto px-4 py-16 text-center max-w-4xl relative z-10">
             <span class="bg-amber-500 text-gray-900 text-xs font-black uppercase tracking-widest px-3 py-1 rounded-full shadow-sm">WhereHindustanEats</span>
             <h1 class="text-4xl md:text-5xl font-black mt-5 mb-4 tracking-tight">India's Ultimate Healthy Dining Guide</h1>
@@ -27,26 +42,35 @@
     <main class="container mx-auto px-4 py-12 max-w-7xl">
         
         <!-- INTERACTIVE FILTERS -->
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mb-10 flex flex-col md:flex-row gap-4 items-center justify-between">
-            <div class="w-full md:w-1/3 relative">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 mb-10 flex flex-col xl:flex-row gap-4 items-center justify-between transition-colors duration-300">
+            <div class="w-full xl:w-1/3 relative">
                 <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-gray-400"></i>
-                <input type="text" id="searchBar" placeholder="Search by restaurant, city, or cuisine..." class="w-full pl-11 pr-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:border-transparent transition-all">
+                <input type="text" id="searchBar" placeholder="Search by restaurant, city, or cuisine..." class="w-full pl-11 pr-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:border-transparent transition-all">
             </div>
             
-            <div class="flex flex-wrap gap-3 w-full md:w-auto justify-end">
-                <select id="cityFilter" class="px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl font-semibold text-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-600">
+            <div class="flex flex-wrap gap-3 w-full xl:w-auto justify-end">
+                <select id="cityFilter" class="px-4 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl font-semibold text-gray-600 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-600">
                     <option value="all">All Cities</option>
                     <option value="Delhi NCR">Delhi NCR</option>
                     <option value="Mumbai">Mumbai</option>
                     <option value="Bengaluru">Bengaluru</option>
                 </select>
-                <select id="dietFilter" class="px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl font-semibold text-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                <select id="dietFilter" class="px-4 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl font-semibold text-gray-600 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-600">
                     <option value="all">All Diets</option>
                     <option value="Organic">Organic</option>
                     <option value="Vegan Options">Vegan Options</option>
                     <option value="Keto Friendly">Keto Friendly</option>
                     <option value="Gluten-Free">Gluten-Free</option>
                 </select>
+                <select id="priceFilter" class="px-4 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl font-semibold text-gray-600 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                    <option value="all">All Prices</option>
+                    <option value="₹">Budget Friendly (₹)</option>
+                    <option value="₹₹">Mid-Range (₹₹)</option>
+                    <option value="₹₹₹">Premium Fine Dining (₹₹₹)</option>
+                </select>
+                <button id="openModalBtn" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2.5 rounded-xl flex items-center gap-2 shadow-sm transition-all">
+                    <i class="fa-solid fa-plus"></i> Add Spot
+                </button>
             </div>
         </div>
 
@@ -58,12 +82,55 @@
         <!-- NO RESULTS FALLBACK -->
         <div id="noResults" class="hidden text-center py-16">
             <i class="fa-solid fa-utensils text-4xl text-gray-300 mb-3"></i>
-            <p class="text-gray-500 text-lg font-medium">No dining spots match your filter criteria.</p>
+            <p class="text-gray-500 dark:text-gray-400 text-lg font-medium">No dining spots match your filter criteria.</p>
         </div>
     </main>
 
+    <!-- FLOATING SUBMISSION MODAL CONTAINER -->
+    <div id="submissionModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl w-full max-w-lg mx-4 overflow-hidden shadow-2xl border border-gray-100 dark:border-gray-700 transform scale-95 transition-transform duration-300">
+            <div class="bg-emerald-800 text-white px-6 py-4 flex items-center justify-between">
+                <h3 class="text-lg font-bold">Recommend a Healthy Spot</h3>
+                <button id="closeModalBtn" class="text-white/80 hover:text-white text-xl"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form id="addRestaurantForm" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Restaurant Name</label>
+                    <input type="text" id="newFormName" required class="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-400 uppercase mb-1">City</label>
+                        <select id="newFormCity" class="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                            <option value="Delhi NCR">Delhi NCR</option>
+                            <option value="Mumbai">Mumbai</option>
+                            <option value="Bengaluru">Bengaluru</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Price Range</label>
+                        <select id="newFormPrice" class="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                            <option value="₹">₹ (Budget)</option>
+                            <option value="₹₹">₹₹ (Mid-Range)</option>
+                            <option value="₹₹₹">₹₹₹ (Premium)</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Cuisine Style</label>
+                    <input type="text" id="newFormCuisine" placeholder="e.g., Clean Eating, Salads" required class="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Must-Try Healthy Specialty</label>
+                    <input type="text" id="newFormSpecialty" placeholder="e.g., Avocado Toast, Keto Bowls" required class="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                </div>
+                <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl transition-all shadow-md mt-2">Submit for Verification</button>
+            </form>
+        </div>
+    </div>
+
     <!-- FOOTER -->
-    <footer class="bg-gray-950 text-gray-400 text-center py-10 border-t border-gray-900 mt-20">
+    <footer class="bg-gray-950 text-gray-400 text-center py-10 border-t border-gray-900 mt-20 transition-colors duration-300">
         <p class="text-sm font-medium">© 2026 <span class="text-white font-bold">WhereHindustanEats</span>. Curating India's clean and mindful culinary maps.</p>
     </footer>
 
