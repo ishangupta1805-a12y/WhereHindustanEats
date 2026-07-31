@@ -1,0 +1,27 @@
+/* Custom utility overrides built on top of Tailwind framework layers */
+@layer utilities {
+    .custom-card-zoom img {
+        transition: transform 0.5s ease;
+    }
+    .custom-card-zoom:hover img {
+        transform: scale(1.05);
+    }
+}
+
+/* Custom scrollbar styling for a cleaner web layout */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #10b981;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #047857;
+}
