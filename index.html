@@ -4,18 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WhereHindustanEats | Healthy & Popular Restaurants India</title>
-    <!-- Tailwind CSS Engine -->
+    <!-- Live Tailwind CSS Engine -->
     <script src="https://tailwindcss.com"></script>
     <script>
-        // Configures Tailwind to support class-based dark mode switching
         tailwind.config = {
             darkMode: 'class'
         }
     </script>
-    <!-- FontAwesome Icons -->
+    <!-- FontAwesome Vector Icons -->
     <link rel="stylesheet" href="https://cloudflare.com">
-    <!-- Custom Style Sheet Link -->
-    <link rel="stylesheet" href="style.css">
+    
+    <!-- Core UI Presentation Styles -->
+    <style>
+        .custom-card-zoom img {
+            transition: transform 0.5s ease;
+        }
+        .custom-card-zoom:hover img {
+            transform: scale(1.05);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #1f2937;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #10b981;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #047857;
+        }
+    </style>
 </head>
 <body class="bg-gray-50 text-gray-800 transition-colors duration-300 dark:bg-gray-900 dark:text-gray-100 font-sans">
 
@@ -23,7 +46,7 @@
     <header class="bg-emerald-800 dark:bg-emerald-950 text-white shadow-md relative overflow-hidden transition-colors duration-300">
         <div class="h-2 bg-amber-500 w-full"></div>
         
-        <!-- Theme Toggle -->
+        <!-- Light / Dark Mode Toggle -->
         <div class="absolute top-4 right-4 z-20">
             <button id="themeToggle" class="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-xl text-sm font-bold flex items-center gap-2 border border-white/20 transition-all">
                 <i id="themeIcon" class="fa-solid fa-moon"></i>
@@ -38,10 +61,8 @@
         </div>
     </header>
 
-    <!-- MAIN CONTENT -->
+    <!-- MAIN INTERACTIVE FILTER CONTROLS -->
     <main class="container mx-auto px-4 py-12 max-w-7xl">
-        
-        <!-- INTERACTIVE FILTERS -->
         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 mb-10 flex flex-col xl:flex-row gap-4 items-center justify-between transition-colors duration-300">
             <div class="w-full xl:w-1/3 relative">
                 <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-gray-400"></i>
@@ -74,19 +95,19 @@
             </div>
         </div>
 
-        <!-- RESTAURANT GRID CONTAINER -->
+        <!-- DYNAMIC RESTAURANT CARD GRID -->
         <div id="restaurantGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Dynamic items injected via script.js -->
+            <!-- JavaScript targets this area explicitly -->
         </div>
 
-        <!-- NO RESULTS FALLBACK -->
+        <!-- APPLIED FILTERS EMPTY RESULTS WRAPPER -->
         <div id="noResults" class="hidden text-center py-16">
             <i class="fa-solid fa-utensils text-4xl text-gray-300 mb-3"></i>
             <p class="text-gray-500 dark:text-gray-400 text-lg font-medium">No dining spots match your filter criteria.</p>
         </div>
     </main>
 
-    <!-- FLOATING SUBMISSION MODAL CONTAINER -->
+    <!-- NEW RESTAURANT MODAL POPUP FORM -->
     <div id="submissionModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
         <div class="bg-white dark:bg-gray-800 rounded-2xl w-full max-w-lg mx-4 overflow-hidden shadow-2xl border border-gray-100 dark:border-gray-700 transform scale-95 transition-transform duration-300">
             <div class="bg-emerald-800 text-white px-6 py-4 flex items-center justify-between">
@@ -108,7 +129,7 @@
                         </select>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Price Range</label>
+                        <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Price Tier</label>
                         <select id="newFormPrice" class="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-600">
                             <option value="₹">₹ (Budget)</option>
                             <option value="₹₹">₹₹ (Mid-Range)</option>
@@ -117,24 +138,17 @@
                     </div>
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Cuisine Style</label>
+                    <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Cuisine Specialty</label>
                     <input type="text" id="newFormCuisine" placeholder="e.g., Clean Eating, Salads" required class="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-600">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Must-Try Healthy Specialty</label>
-                    <input type="text" id="newFormSpecialty" placeholder="e.g., Avocado Toast, Keto Bowls" required class="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                    <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Must-Try Healthy Dish</label>
+                    <input type="text" id="newFormSpecialty" placeholder="e.g., Avocado Toast, Protein Bowls" required class="w-full px-4 py-2 border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-600">
                 </div>
                 <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl transition-all shadow-md mt-2">Submit for Verification</button>
             </form>
         </div>
     </div>
 
-    <!-- FOOTER -->
+    <!-- GLOBAL SITE FOOTER -->
     <footer class="bg-gray-950 text-gray-400 text-center py-10 border-t border-gray-900 mt-20 transition-colors duration-300">
-        <p class="text-sm font-medium">© 2026 <span class="text-white font-bold">WhereHindustanEats</span>. Curating India's clean and mindful culinary maps.</p>
-    </footer>
-
-    <!-- Custom Script File Link -->
-    <script src="script.js"></script>
-</body>
-</html>
