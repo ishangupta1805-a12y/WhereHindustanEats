@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WhereHindustanEats | Healthy & Popular Restaurants India</title>
     <!-- Solid, Stable Tailwind CSS Play Framework -->
@@ -166,3 +170,168 @@
             },
             {
                 name: "Sante Spa Cuisine",
+Use code with caution.city: "Bengaluru",cuisine: "Vegan, Mediterranean, Spa Food",rating: 4.8,votes: "1,800+",price: "₹₹₹",specialty: "Zucchini Noodles, Charcoal Ice Cream",tags: ["Vegan Options", "Keto Friendly", "Gluten-Free"],mapUrl: "google.com",image: "unsplash.com"},{name: "Gotta Turnip",city: "Delhi NCR",cuisine: "Salads, Cold-pressed Juices",rating: 4.5,votes: "720+",price: "₹",specialty: "Avocado Keto Salads, Protein Bowls",tags: ["Keto Friendly", "Gluten-Free"],mapUrl: "google.com",image: "unsplash.com"},{name: "Sequel Raw",city: "Mumbai",cuisine: "Organic, Clean Eating",rating: 4.9,votes: "1,100+",price: "₹₹₹",specialty: "Acai Bowls, Flaxseed Crackers",tags: ["Organic", "Gluten-Free", "Vegan Options"],mapUrl: "google.com",image: "unsplash.com"},{name: "Carrots Restaurant",city: "Bengaluru",cuisine: "100% Plant-Based, Healthy Comfort",rating: 4.6,votes: "1,400+",price: "₹",specialty: "Sourdough Pizzas, Vegan Pesto Pasta",tags: ["Vegan Options"],mapUrl: "google.com",image: "unsplash.com"}];function displayRestaurants(data) {const grid = document.getElementById("restaurantGrid");const noResults = document.getElementById("noResults");if (!grid) return;grid.innerHTML = "";if (data.length === 0) {if (noResults) noResults.classList.remove("hidden");return;}if (noResults) noResults.classList.add("hidden");data.forEach(res => {const tagBadges = res.tags.map(tag =><span class="text-xs font-bold bg-emerald-50 text-emerald-800 px-2.5 py-1 rounded-md border border-emerald-100/50">${tag}</span>).join("");const cardHtml = `${res.rating}(${res.votes})${res.city}${res.name}${res.price}${res.cuisine}Must Try Specialty${res.specialty}${tagBadges} View Map`;grid.innerHTML += cardHtml;});}function filterRestaurants() {const searchVal = document.getElementById("searchBar").value.toLowerCase();const cityVal = document.getElementById("cityFilter").value;const dietVal = document.getElementById("dietFilter").value;const priceVal = document.getElementById("priceFilter").value;const filtered = restaurants.filter(res => {const matchesSearch = res.name.toLowerCase().includes(searchVal) ||res.cuisine.toLowerCase().includes(searchVal) ||res.city.toLowerCase().includes(searchVal);const matchesCity = cityVal === "all" || res.city === cityVal;const matchesDiet = dietVal === "all" || res.tags.includes(dietVal);const matchesPrice = priceVal === "all" || res.price === priceVal;return matchesSearch && matchesCity && matchesDiet && matchesPrice;});displayRestaurants(filtered);}// Render data immediately as soon as browser evaluates this blockdisplayRestaurants(restaurants);// Bind filter change events safelydocument.getElementById("searchBar").addEventListener("keyup", filterRestaurants);document.getElementById("cityFilter").addEventListener("change", filterRestaurants);document.getElementById("dietFilter").addEventListener("change", filterRestaurants);document.getElementById("priceFilter").addEventListener("change", filterRestaurants);// Interactive submission modals scriptconst modal = document.getElementById("submissionModal");const openModalBtn = document.getElementById("openModalBtn");const closeModalBtn = document.getElementById("closeModalBtn");const form = document.getElementById("addRestaurantForm");openModalBtn.addEventListener("click", () => {modal.classList.remove("hidden");setTimeout(() => {modal.classList.remove("opacity-0");modal.querySelector("div").classList.remove("scale-95");}, 10);});const closeModal = () => {modal.classList.add("opacity-0");modal.querySelector("div").classList.add("scale-95");setTimeout(() => {modal.classList.add("hidden");}, 300);};closeModalBtn.addEventListener("click", closeModal);modal.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });form.addEventListener("submit", (e) => {e.preventDefault();const nameIn = document.getElementById("newFormName").value;const cityIn = document.getElementById("newFormCity").value;const newSpot = {name: nameIn,city: cityIn,cuisine: document.getElementById("newFormCuisine").value,rating: 5.0,votes: "1",price: document.getElementById("newFormPrice").value,specialty: doc;
+    <title>WhereHindustanEats | Healthy & Popular Restaurants India</title>
+    <!-- Solid, Stable Tailwind CSS Play Framework -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Vector UI Icons Icons -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+    
+    <style>
+        .custom-card-zoom img {
+            transition: transform 0.5s ease;
+        }
+        .custom-card-zoom:hover img {
+            transform: scale(1.05);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #10b981;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #047857;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+    <!-- HERO SECTION -->
+    <header class="bg-emerald-800 text-white shadow-md relative overflow-hidden">
+        <div class="h-2 bg-amber-500 w-full"></div>
+        <div class="container mx-auto px-4 py-16 text-center max-w-4xl relative z-10">
+            <span class="bg-amber-500 text-gray-900 text-xs font-black uppercase tracking-widest px-3 py-1 rounded-full shadow-sm">WhereHindustanEats</span>
+            <h1 class="text-4xl md:text-5xl font-black mt-5 mb-4 tracking-tight">India's Ultimate Healthy Dining Guide</h1>
+            <p class="text-emerald-100 text-lg md:text-xl font-medium max-w-2xl mx-auto">Discover popular, highly-rated restaurants across Bharat that perfectly balance local heritage with clean nutrition.</p>
+        </div>
+    </header>
+
+    <!-- INTERACTIVE APP FILTERS -->
+    <main class="container mx-auto px-4 py-12 max-w-7xl">
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mb-10 flex flex-col xl:flex-row gap-4 items-center justify-between">
+            <div class="w-full xl:w-1/3 relative">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-gray-400"></i>
+                <input type="text" id="searchBar" placeholder="Search by restaurant, city, or cuisine..." class="w-full pl-11 pr-4 py-2.5 rounded-xl border border-gray-200 bg-gray-50 text-gray-800 focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:border-transparent transition-all">
+            </div>
+            
+            <div class="flex flex-wrap gap-3 w-full xl:w-auto justify-end">
+                <select id="cityFilter" class="px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl font-semibold text-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                    <option value="all">All Cities</option>
+                    <option value="Delhi NCR">Delhi NCR</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Bengaluru">Bengaluru</option>
+                </select>
+                <select id="dietFilter" class="px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl font-semibold text-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                    <option value="all">All Diets</option>
+                    <option value="Organic">Organic</option>
+                    <option value="Vegan Options">Vegan Options</option>
+                    <option value="Keto Friendly">Keto Friendly</option>
+                    <option value="Gluten-Free">Gluten-Free</option>
+                </select>
+                <select id="priceFilter" class="px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl font-semibold text-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                    <option value="all">All Prices</option>
+                    <option value="₹">Budget Friendly (₹)</option>
+                    <option value="₹₹">Mid-Range (₹₹)</option>
+                    <option value="₹₹₹">Premium Fine Dining (₹₹₹)</option>
+                </select>
+                <button id="openModalBtn" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2.5 rounded-xl flex items-center gap-2 shadow-sm transition-all">
+                    <i class="fa-solid fa-plus"></i> Add Spot
+                </button>
+            </div>
+        </div>
+
+        <!-- RESTAURANT DISPLAY CARDS GRID -->
+        <div id="restaurantGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Injected safely via browser script execution -->
+        </div>
+
+        <!-- FALLBACK FOR BLANK SEARCH RESULT FILTERS -->
+        <div id="noResults" class="hidden text-center py-16">
+            <i class="fa-solid fa-utensils text-4xl text-gray-300 mb-3"></i>
+            <p class="text-gray-500 text-lg font-medium">No dining spots match your filter criteria.</p>
+        </div>
+    </main>
+
+    <!-- NEW RESTAURANT MODAL POPUP FORM -->
+    <div id="submissionModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl w-full max-w-lg mx-4 overflow-hidden shadow-2xl border border-gray-100 transform scale-95 transition-transform duration-300">
+            <div class="bg-emerald-800 text-white px-6 py-4 flex items-center justify-between">
+                <h3 class="text-lg font-bold">Recommend a Healthy Spot</h3>
+                <button id="closeModalBtn" class="text-white/80 hover:text-white text-xl"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form id="addRestaurantForm" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Restaurant Name</label>
+                    <input type="text" id="newFormName" required class="w-full px-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-400 uppercase mb-1">City</label>
+                        <select id="newFormCity" class="w-full px-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                            <option value="Delhi NCR">Delhi NCR</option>
+                            <option value="Mumbai">Mumbai</option>
+                            <option value="Bengaluru">Bengaluru</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Price Tier</label>
+                        <select id="newFormPrice" class="w-full px-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                            <option value="₹">₹ (Budget)</option>
+                            <option value="₹₹">₹₹ (Mid-Range)</option>
+                            <option value="₹₹₹">₹₹₹ (Premium)</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Cuisine Specialty</label>
+                    <input type="text" id="newFormCuisine" placeholder="e.g., Clean Eating, Salads" required class="w-full px-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Must-Try Healthy Dish</label>
+                    <input type="text" id="newFormSpecialty" placeholder="e.g., Avocado Toast, Protein Bowls" required class="w-full px-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                </div>
+                <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl transition-all shadow-md mt-2">Submit for Verification</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- GLOBAL SITE FOOTER -->
+    <footer class="bg-gray-950 text-gray-400 text-center py-10 border-t border-gray-900 mt-20">
+        <p class="text-sm font-medium">© 2026 <span class="text-white font-bold">WhereHindustanEats</span>. Curating India's clean and mindful culinary maps.</p>
+    </footer>
+
+    <script>
+        // Core application verified structural restaurant data arrays
+        const restaurants = [
+            {
+                name: "Fabcafe by Fabindia",
+                city: "Delhi NCR",
+                cuisine: "Healthy Indian, Fusion",
+                rating: 4.6,
+                votes: "1,200+",
+                price: "₹₹",
+                specialty: "Quinoa Biryani, Almond Flour Roti",
+                tags: ["Organic", "Gluten-Free"],
+                mapUrl: "https://google.com",
+                image: "https://unsplash.com"
+            },
+            {
+                name: "The Yoga House",
+                city: "Mumbai",
+                cuisine: "Organic Cafe, Juices",
+                rating: 4.7,
+                votes: "950+",
+                price: "₹₹",
+                specialty: "Macrobiotic Meals, Detox Juices",
+                tags: ["Organic", "Vegan Options"],
+                mapUrl: "https://google.com",
+                image: "https://unsplash.com"
+            },
+            {
+                name: "Sante Spa Cuisine",
+Use code with caution.city: "Bengaluru",cuisine: "Vegan, Mediterranean, Spa Food",rating: 4.8,votes: "1,800+",price: "₹₹₹",specialty: "Zucchini Noodles, Charcoal Ice Cream",tags: ["Vegan Options", "Keto Friendly", "Gluten-Free"],mapUrl: "google.com",image: "unsplash.com"},{name: "Gotta Turnip",city: "Delhi NCR",cuisine: "Salads, Cold-pressed Juices",rating: 4.5,votes: "720+",price: "₹",specialty: "Avocado Keto Salads, Protein Bowls",tags: ["Keto Friendly", "Gluten-Free"],mapUrl: "google.com",image: "unsplash.com"},{name: "Sequel Raw",city: "Mumbai",cuisine: "Organic, Clean Eating",rating: 4.9,votes: "1,100+",price: "₹₹₹",specialty: "Acai Bowls, Flaxseed Crackers",tags: ["Organic", "Gluten-Free", "Vegan Options"],mapUrl: "google.com",image: "unsplash.com"},{name: "Carrots Restaurant",city: "Bengaluru",cuisine: "100% Plant-Based, Healthy Comfort",rating: 4.6,votes: "1,400+",price: "₹",specialty: "Sourdough Pizzas, Vegan Pesto Pasta",tags: ["Vegan Options"],mapUrl: "google.com",image: "unsplash.com"}];function displayRestaurants(data) {const grid = document.getElementById("restaurantGrid");const noResults = document.getElementById("noResults");if (!grid) return;grid.innerHTML = "";if (data.length === 0) {if (noResults) noResults.classList.remove("hidden");return;}if (noResults) noResults.classList.add("hidden");data.forEach(res => {const tagBadges = res.tags.map(tag =><span class="text-xs font-bold bg-emerald-50 text-emerald-800 px-2.5 py-1 rounded-md border border-emerald-100/50">${tag}</span>).join("");const cardHtml = `${res.rating}(${res.votes})${res.city}${res.name}${res.price}${res.cuisine}Must Try Specialty${res.specialty}${tagBadges} View Map`;grid.innerHTML += cardHtml;});}function filterRestaurants() {const searchVal = document.getElementById("searchBar").value.toLowerCase();const cityVal = document.getElementById("cityFilter").value;const dietVal = document.getElementById("dietFilter").value;const priceVal = document.getElementById("priceFilter").value;const filtered = restaurants.filter(res => {const matchesSearch = res.name.toLowerCase().includes(searchVal) ||res.cuisine.toLowerCase().includes(searchVal) ||res.city.toLowerCase().includes(searchVal);const matchesCity = cityVal === "all" || res.city === cityVal;const matchesDiet = dietVal === "all" || res.tags.includes(dietVal);const matchesPrice = priceVal === "all" || res.price === priceVal;return matchesSearch && matchesCity && matchesDiet && matchesPrice;});displayRestaurants(filtered);}// Render data immediately as soon as browser evaluates this blockdisplayRestaurants(restaurants);// Bind filter change events safelydocument.getElementById("searchBar").addEventListener("keyup", filterRestaurants);document.getElementById("cityFilter").addEventListener("change", filterRestaurants);document.getElementById("dietFilter").addEventListener("change", filterRestaurants);document.getElementById("priceFilter").addEventListener("change", filterRestaurants);// Interactive submission modals scriptconst modal = document.getElementById("submissionModal");const openModalBtn = document.getElementById("openModalBtn");const closeModalBtn = document.getElementById("closeModalBtn");const form = document.getElementById("addRestaurantForm");openModalBtn.addEventListener("click", () => {modal.classList.remove("hidden");setTimeout(() => {modal.classList.remove("opacity-0");modal.querySelector("div").classList.remove("scale-95");}, 10);});const closeModal = () => {modal.classList.add("opacity-0");modal.querySelector("div").classList.add("scale-95");setTimeout(() => {modal.classList.add("hidden");}, 300);};closeModalBtn.addEventListener("click", closeModal);modal.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });form.addEventListener("submit", (e) => {e.preventDefault();const nameIn = document.getElementById("newFormName").value;const cityIn = document.getElementById("newFormCity").value;const newSpot = {name: nameIn,city: cityIn,cuisine: document.getElementById("newFormCuisine").value,rating: 5.0,votes: "1",price: document.getElementById("newFormPrice").value,specialty: document.getElementById("newFormSpecialty").value,tags: ["Organic"],mapUrl: https://google.com{encodeURIComponent(nameIn)}+${encodeURIComponent(cityIn)},image: "unsplash.com"};restaurants.unshift(newSpot);displayRestaurants(restaurants);form.reset();closeModal();});
