@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhereHindustanEats | Healthy & Popular Restaurants India</title>
+    <!-- Tailwind CSS Engine -->
+    <script src="https://tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <!-- Custom Style Sheet Link -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50 font-sans text-gray-800">
+
+    <!-- HERO SECTION -->
+    <header class="bg-emerald-800 text-white shadow-md relative overflow-hidden">
+        <div class="h-2 bg-amber-500 w-full"></div>
+        <div class="container mx-auto px-4 py-16 text-center max-w-4xl relative z-10">
+            <span class="bg-amber-500 text-gray-900 text-xs font-black uppercase tracking-widest px-3 py-1 rounded-full shadow-sm">WhereHindustanEats</span>
+            <h1 class="text-4xl md:text-5xl font-black mt-5 mb-4 tracking-tight">India's Ultimate Healthy Dining Guide</h1>
+            <p class="text-emerald-100 text-lg md:text-xl font-medium max-w-2xl mx-auto">Discover popular, highly-rated restaurants across Bharat that perfectly balance local heritage with clean nutrition.</p>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="container mx-auto px-4 py-12 max-w-7xl">
+        
+        <!-- INTERACTIVE FILTERS -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mb-10 flex flex-col md:flex-row gap-4 items-center justify-between">
+            <div class="w-full md:w-1/3 relative">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-gray-400"></i>
+                <input type="text" id="searchBar" placeholder="Search by restaurant, city, or cuisine..." class="w-full pl-11 pr-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:border-transparent transition-all">
+            </div>
+            
+            <div class="flex flex-wrap gap-3 w-full md:w-auto justify-end">
+                <select id="cityFilter" class="px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl font-semibold text-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                    <option value="all">All Cities</option>
+                    <option value="Delhi NCR">Delhi NCR</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Bengaluru">Bengaluru</option>
+                </select>
+                <select id="dietFilter" class="px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl font-semibold text-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                    <option value="all">All Diets</option>
+                    <option value="Organic">Organic</option>
+                    <option value="Vegan Options">Vegan Options</option>
+                    <option value="Keto Friendly">Keto Friendly</option>
+                    <option value="Gluten-Free">Gluten-Free</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- RESTAURANT GRID CONTAINER -->
+        <div id="restaurantGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Dynamic items injected via script.js -->
+        </div>
+
+        <!-- NO RESULTS FALLBACK -->
+        <div id="noResults" class="hidden text-center py-16">
+            <i class="fa-solid fa-utensils text-4xl text-gray-300 mb-3"></i>
+            <p class="text-gray-500 text-lg font-medium">No dining spots match your filter criteria.</p>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-950 text-gray-400 text-center py-10 border-t border-gray-900 mt-20">
+        <p class="text-sm font-medium">© 2026 <span class="text-white font-bold">WhereHindustanEats</span>. Curating India's clean and mindful culinary maps.</p>
+    </footer>
+
+    <!-- Custom Script File Link -->
+    <script src="script.js"></script>
+</body>
+</html>
